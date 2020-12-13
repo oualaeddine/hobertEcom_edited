@@ -1,0 +1,7 @@
+{
+    "require": {
+        "hybridauth/hybridauth": "^2.10",
+        "smsgatewayme/client": "^0.0.1",
+        "ext-pdo": "*"
+    }
+}
