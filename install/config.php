@@ -1,7 +1,7 @@
 <?php
 $host1 = "localhost";
-$user1 = "root";
-$pass1 = "";
-$dbname1 = "hobert_db";
+$user1 = "oualwkpq_oualaeddine";
+$pass1 = "wazawaza123";
+$dbname1 = "oualwkpq_hobrtdb";
 
 ?>
