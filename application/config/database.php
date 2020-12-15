@@ -74,10 +74,10 @@ $active_group = 'default';
 $query_builder = TRUE;
 
 $db['default'] = array(
-	'dsn'	=> 'mysql:host=localhost; dbname=hobert_db; charset=utf8;',
+	'dsn'	=> 'mysql:host=localhost; dbname=oualwkpq_hobrtdb; charset=utf8;',
 	'hostname' => '',
-	'username' => 'root',
-	'password' => '',
+	'username' => 'oualwkpq_oualaeddine',
+	'password' => 'wazawaza123',
 	'database' => '',
 	'dbdriver' => 'pdo',
 	'dbprefix' => '',
