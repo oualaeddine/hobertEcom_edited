@@ -28,7 +28,7 @@
 											<p>
 												<ins>
 												<?php if($p->discount != 0){ ?>
-												<span><?php echo $p->price; ?> د.ج </span> <?php echo floor($p->price - ($p->price * $p->discount / 100)); ?>DH
+												<span><?php echo $p->price; ?> د.ج </span> <?php echo floor($p->price - ($p->price * $p->discount / 100)); ?>د.ج
 												<?php }else{ ?>
 													<?php echo $p->price; ?> د.ج
 												<?php } ?>

@@ -1,292 +1,263 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
+
 /**
-* @author hobrt.me
-* @file Home.php
-* @package hobrtEcom
-* @link hobrt.me
-* @copyright hobrt.me 2018 => 2019
-*
-**/
+ * @author hobrt.me
+ * @file Home.php
+ * @package hobrtEcom
+ * @link hobrt.me
+ * @copyright hobrt.me 2018 => 2019
+ *
+ **/
+
 use SMSGatewayMe\Client\ApiClient;
 use SMSGatewayMe\Client\Configuration;
 use SMSGatewayMe\Client\Api\MessageApi;
 use SMSGatewayMe\Client\Model\SendMessageRequest;
 
-class Home extends CI_Controller {
+class Home extends CI_Controller
+{
 
-	function __construct()
-	{
-		parent::__construct();
-	}
+    function __construct()
+    {
+        parent::__construct();
+    }
 
-	public function index()
-	{
-		$data['products'] = $this->m_p->s_a("products", array(), FALSE);
+    public function index()
+    {
+        $data['products'] = $this->m_p->s_a("products", array(), FALSE);
 
-		$data['cats'] = $this->m_p->s_a("cats", array(), FALSE, 0, array("*"), "position", "ASC");
+        $data['cats'] = $this->m_p->s_a("cats", array(), FALSE, 0, array("*"), "position", "ASC");
 
-		$this->load->view(template."/index", $data);
-	}
+        $this->load->view(template . "/index", $data);
+    }
 
-	public function category($id = FALSE)
-	{
+    public function category($id = FALSE)
+    {
 
-		if($id == FALSE)
-			redirect("home");
+        if ($id == FALSE)
+            redirect("home");
 
-		$cat = $this->m_p->s_a("cats", array("id" => $id), 1);
+        $cat = $this->m_p->s_a("cats", array("id" => $id), 1);
 
-		if(count($cat) == 0)
-			redirect("home");
+        if (count($cat) == 0)
+            redirect("home");
 
-		foreach ($cat as $key) {
-			$data['title'] = $key->title;
-		}
+        foreach ($cat as $key) {
+            $data['title'] = $key->title;
+        }
 
-		$data['products'] = $this->m_p->s_a("products", array("cat" => $id), FALSE);
+        $data['products'] = $this->m_p->s_a("products", array("cat" => $id), FALSE);
 
-		$data['cats'] = $this->m_p->s_a("cats", array(), FALSE, 0, array("*"), "position", "ASC");
+        $data['cats'] = $this->m_p->s_a("cats", array(), FALSE, 0, array("*"), "position", "ASC");
 
-		$this->load->view(template."/cat", $data);
+        $this->load->view(template . "/cat", $data);
 
-	}
-	
-
-	public function discounts()
-	{
-		$data['title'] = "تخفيضات";
-		
-		$data['products'] = $this->m_p->s_a("products", array("discount > " => 0), FALSE);
-
-		$data['cats'] = $this->m_p->s_a("cats", array(), FALSE, 0, array("*"), "position", "ASC");
-
-		$this->load->view(template."/cat", $data);
-
-	}
-	
-
-	public function show($id = FALSE)
-	{
-		if($id == FALSE)
-			redirect("home");
-		
-		$data['info'] = $this->m_p->s_a("products", array("id" => $id), 1);
-
-		if(count($data['info']) == 0)
-			redirect("home");
-
-		$data['cats'] = $this->m_p->s_a("cats", array(), FALSE, 0, array("*"), "position", "ASC");
+    }
 
 
-		$form_validation = array(
-			array(
-				"field" => "name",
-				"label" => "الإسم الكامل",
-				"rules" => "trim|required"
-				),
-			array(
-				"field" => "comment",
-				"label" => "التعليق",
-				"rules" => "trim|required"
-				)
-			);
-		$this->form_validation->set_rules($form_validation);
-		if($this->form_validation->run() === TRUE)
-		{
-			$config['upload_path'] 				= './reviews/';
-			$config['allowed_types'] 			= 'jpg|jpeg|png';
-			$config['encrypt_name'] 			= TRUE;
-			$config['max_size']					= '10240'; // 10 MB
-			$this->upload->initialize($config);
-			$a = $this->upload->do_upload('img');
-			$data_upload = $this->upload->data();
-			$img = "";
-			if($a)
-			{
-				$this->image_l
-					->load($data_upload['full_path'])
-					->resize_crop(300,300)
-					->save_pa('','',TRUE);
+    public function discounts()
+    {
+        $data['title'] = "تخفيضات";
 
-				$img = $data_upload['file_name'];
-			}
+        $data['products'] = $this->m_p->s_a("products", array("discount > " => 0), FALSE);
 
-			if(isset($_POST['starv'])){
+        $data['cats'] = $this->m_p->s_a("cats", array(), FALSE, 0, array("*"), "position", "ASC");
 
-				$arr = array(
-					"name" => $this->input->post("name"),
-					"comment" => $this->input->post("comment"),
-					"vote" => $this->input->post("starv"),
-					"img" => $img,
-					"date" => time(),
-					"product" => $id
+        $this->load->view(template . "/cat", $data);
 
-				);
-
-				$this->m_p->ins("reviews", $arr);
-
-				$data['msg'] = "تم إضافة التقييم الخاص بك سوف يظهر بعد مراجعة الإدارة .";
-
-			}
+    }
 
 
-		}
+    public function show($id = FALSE)
+    {
+        if ($id == FALSE)
+            redirect("home");
 
-		if(is_login("admin_login"))
-		{
-			$data['votes'] = $this->m_p->s_a("reviews", array("product" => $id), 50);
-		}else {
-			$data['votes'] = $this->m_p->s_a("reviews", array("product" => $id, "ac" => 1), 50);
-		}
+        $data['info'] = $this->m_p->s_a("products", array("id" => $id), 1);
 
-		foreach($data['info'] as $key)
-		{
-			$data['title'] = $key->title;
-			$cat = $key->cat;
-		}
+        if (count($data['info']) == 0)
+            redirect("home");
 
-		$data['related'] = $this->m_p->s_a("products", array("id <>" => $id, "cat" => $cat), 4);
-
-		$this->load->view(template."/show", $data);
-
-	}
+        $data['cats'] = $this->m_p->s_a("cats", array(), FALSE, 0, array("*"), "position", "ASC");
 
 
-	public function cart()
-	{
-		
-		$data['cats'] = $this->m_p->s_a("cats", array(), FALSE, 0, array("*"), "position", "ASC");
+        $form_validation = array(
+            array(
+                "field" => "name",
+                "label" => "الإسم الكامل",
+                "rules" => "trim|required"
+            ),
+            array(
+                "field" => "comment",
+                "label" => "التعليق",
+                "rules" => "trim|required"
+            )
+        );
+        $this->form_validation->set_rules($form_validation);
+        if ($this->form_validation->run() === TRUE) {
+            $config['upload_path'] = './reviews/';
+            $config['allowed_types'] = 'jpg|jpeg|png';
+            $config['encrypt_name'] = TRUE;
+            $config['max_size'] = '10240'; // 10 MB
+            $this->upload->initialize($config);
+            $a = $this->upload->do_upload('img');
+            $data_upload = $this->upload->data();
+            $img = "";
+            if ($a) {
+                $this->image_l
+                    ->load($data_upload['full_path'])
+                    ->resize_crop(300, 300)
+                    ->save_pa('', '', TRUE);
 
-		if(!is_null(get_cookie("cart"))){
-			$arr = json_decode(get_cookie("cart"), TRUE);
+                $img = $data_upload['file_name'];
+            }
 
-			// print_r($arr);
-			// exit();
+            if (isset($_POST['starv'])) {
+
+                $arr = array(
+                    "name" => $this->input->post("name"),
+                    "comment" => $this->input->post("comment"),
+                    "vote" => $this->input->post("starv"),
+                    "img" => $img,
+                    "date" => time(),
+                    "product" => $id
+
+                );
+
+                $this->m_p->ins("reviews", $arr);
+
+                $data['msg'] = "تم إضافة التقييم الخاص بك سوف يظهر بعد مراجعة الإدارة .";
+
+            }
 
 
-			$ids = array();
+        }
 
-			foreach($arr as $a)
-			{
-				$ids[] = $a['id'];
-			}
+        if (is_login("admin_login")) {
+            $data['votes'] = $this->m_p->s_a("reviews", array("product" => $id), 50);
+        } else {
+            $data['votes'] = $this->m_p->s_a("reviews", array("product" => $id, "ac" => 1), 50);
+        }
 
-			$data['arr'] = $arr;
+        foreach ($data['info'] as $key) {
+            $data['title'] = $key->title;
+            $cat = $key->cat;
+        }
 
-			if(count($ids) > 0)
-				$data["info"] = $this->m_p->s_cart("products", $ids, FALSE);
-			else
-				$data['info'] = array();
+        $data['related'] = $this->m_p->s_a("products", array("id <>" => $id, "cat" => $cat), 4);
 
-			$form_validation = array(
-				array(
-					"field" => "fullname",
-					"label" => "الإسم الكامل",
-					"rules" => "trim|required"
-					),
-				array(
-					"field" => "phone",
-					"label" => "الهاتف",
-					"rules" => "trim|required"
-					),
+        $this->load->view(template . "/show", $data);
+
+    }
+
+
+    public function cart()
+    {
+
+        $data['cats'] = $this->m_p->s_a("cats", array(), FALSE, 0, array("*"), "position", "ASC");
+
+        if (!is_null(get_cookie("cart"))) {
+            $arr = json_decode(get_cookie("cart"), TRUE);
+
+            // print_r($arr);
+            // exit();
+
+
+            $ids = array();
+
+            foreach ($arr as $a) {
+                $ids[] = $a['id'];
+            }
+
+            $data['arr'] = $arr;
+
+            if (count($ids) > 0)
+                $data["info"] = $this->m_p->s_cart("products", $ids, FALSE);
+            else
+                $data['info'] = array();
+
+            $form_validation = array(
+                array(
+                    "field" => "fullname",
+                    "label" => "الإسم الكامل",
+                    "rules" => "trim|required"
+                ),
+                array(
+                    "field" => "phone",
+                    "label" => "الهاتف",
+                    "rules" => "trim|required"
+                ),
                 array(
                     "field" => "city",
                     "label" => "الولاية",
                     "rules" => "trim|required"
                 ),
-                array(
-                    "field" => "state",
-                    "label" => "البلدية",
-                    "rules" => "trim|required"
-                ),
             );
-			$this->form_validation->set_rules($form_validation);
-			if($this->form_validation->run() === TRUE)
-			{
-				$products = array();
+            $this->form_validation->set_rules($form_validation);
+            if ($this->form_validation->run() === TRUE) {
+                $products = array();
 
-				$tprice = 0;
-				$ship = 0;
-				foreach($data['info'] as $key)
-				{
-					$products[$key->id] = $data['arr'][$key->id]['q'];
+                $tprice = 0;
+                $ship = 0;
+                foreach ($data['info'] as $key) {
+                    $products[$key->id] = $data['arr'][$key->id]['q'];
 
-					$pr = floor($key->price - ($key->price * $key->discount / 100)); $tpr = isset($data['arr'][$key->id]['q']) ? $pr * $arr[$key->id]['q'] : $pr;
+                    $pr = floor($key->price - ($key->price * $key->discount / 100));
+                    $tpr = isset($data['arr'][$key->id]['q']) ? $pr * $arr[$key->id]['q'] : $pr;
 
-					$tprice = $tprice + $tpr;
-					$ship = $ship + $key->shipping;
-				}
+                    $tprice = $tprice + $tpr;
+                    $ship = $ship + $key->shipping;
+                }
 
-				$coupon = $this->input->post("coupon");
+                $coupon = $this->input->post("coupon");
 
-				$date = "Y-m-d";
+                $date = "Y-m-d";
 
-				if(!empty($coupon))
-				{
-					$c = $this->m_p->s_a("discounts", array("coupon" => $coupon, "date >=" => $date));
+                if (!empty($coupon)) {
+                    $c = $this->m_p->s_a("discounts", array("coupon" => $coupon, "date >=" => $date));
 
-					if(count($c) != 0)
-					{
-						foreach($c as $k)
-							$num = $k->num;
+                    if (count($c) != 0) {
+                        foreach ($c as $k)
+                            $num = $k->num;
 
-						$tprice = $tprice - $num * $tprice / 100;
-					}
-				}
+                        $tprice = $tprice - $num * $tprice / 100;
+                    }
+                }
 
-				$arr = array(
-					"name" => $this->input->post("fullname"),
-					"tele" => $this->input->post("phone"),
-					"address" => $this->input->post("address"),
-					"city" => $this->input->post("city"),
-					"state" => $this->input->post("state"),
-					"coupon" => $this->input->post("coupon"),
-					"totalPrice" => $tprice + $ship,
-					"products" => json_encode($products),
-					"date" => time()
-				);
+                $arr = array(
+                    "name" => $this->input->post("fullname"),
+                    "tele" => $this->input->post("phone"),
+                    "address" => $this->input->post("address"),
+                    "city" => $this->input->post("city"),
+                    //	"state" => $this->input->post("state"),
+                   // "coupon" => $this->input->post("coupon"),
+                    "totalPrice" => $tprice + $ship,
+                    "products" => json_encode($products),
+                    "date" => time()
+                );
 
-				$this->m_p->ins("orders", $arr);
+                $this->m_p->ins("orders", $arr);
 
-				delete_cookie("cart");
+                delete_cookie("cart");
 
-				// Send sms to clients
-                $config = Configuration::getDefaultConfiguration();
-                $config->setApiKey('Authorization', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhZG1pbiIsImlhdCI6MTU5MDg4MjE0NywiZXhwIjo0MTAyNDQ0ODAwLCJ1aWQiOjgwNDkyLCJyb2xlcyI6WyJST0xFX1VTRVIiXX0.fEshzjtXhayU6yeju8hecCzKlp4MKu_o817cjUF48NM');
-                $apiClient = new ApiClient($config);
-                $messageClient = new MessageApi($apiClient);
-
-                $sendMessageRequest1 = new SendMessageRequest([
-                    
-                     'phoneNumber' => $this->input->post("phone"),
-                     
-                     'message' => 'لقد تلقينا طلبك بنجاح عبر متجر كسال سيتم الاتصال بكم هاتفيا لتأكيد طلبكم من الارقام التالية : 0778405904 - 0778046191',
-                     
-                     'deviceId' => 117432
-                     
-                ]);
-                $sendMessages = $messageClient->sendMessages([
-                    $sendMessageRequest1
-                ]);
-				redirect("home/thanks");
-			}
+                redirect("home/thanks");
+            }
 
 
-			$data['ids'] = implode(",", $ids);
-		}else
-			$data['info'] = array();
+            $data['ids'] = implode(",", $ids);
+        } else
+            $data['info'] = array();
 
-		$this->load->view(template."/cart", $data);
-	}
+        $this->load->view(template . "/cart", $data);
+    }
 
-	public function thanks()
-	{
-		$data['cats'] = $this->m_p->s_a("cats", array(), FALSE, 0, array("*"), "position", "ASC");
+    public function thanks()
+    {
+        $data['cats'] = $this->m_p->s_a("cats", array(), FALSE, 0, array("*"), "position", "ASC");
 
-		$this->load->view(template."/end", $data);
-	}
-	
+        $this->load->view(template . "/end", $data);
+    }
 
 
 }

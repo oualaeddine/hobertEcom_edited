@@ -33,7 +33,7 @@
 				<td data-title="العنوان"><?php echo $key->city; ?></td>
 				<td data-title="العنوان"><?php echo $key->state; ?></td>
 				<td data-title="العنوان"><?php echo date("Y-m-d H:i", $key->date); ?></td>
-				<td data-title="العنوان"><?php echo $key->totalPrice; ?> DH</td>
+				<td data-title="العنوان"><?php echo $key->totalPrice; ?> د.ج</td>
 				<td data-title="العنوان"><?php switch ($key->status) {
 					case 1:
 						echo "بإنتظار التأكيد";

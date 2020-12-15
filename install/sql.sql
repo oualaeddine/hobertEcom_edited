@@ -11,7 +11,7 @@ CREATE TABLE `cats` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 CREATE TABLE `discounts` (
   `id` int(11) NOT NULL,
-  `coupon` varchar(100) NOT NULL,
+  `coupon` varchar(100) ,
   `num` int(11) NOT NULL,
   `date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -21,7 +21,8 @@ CREATE TABLE `orders` (
   `tele` varchar(300) NOT NULL,
   `address` varchar(300) NOT NULL,
   `city` varchar(300) NOT NULL,
-  `coupon` varchar(300) NOT NULL,
+  `state` varchar(300) NOT NULL,
+  `coupon` varchar(300) ,
   `totalPrice` float NOT NULL,
   `shipping` float NOT NULL,
   `products` text NOT NULL,
