@@ -1,6 +1,4 @@
 <?php include_once 'header.php'; ?>
-
-
 			<!-- Main -->
 			<div class="lx-main">
 				<!-- Main Content -->
@@ -11,9 +9,7 @@
 					</div>
 					<div class="lx-products-list lx-bloc-content">
 						<div class="lx-products-items">
-							
 							<?php $i = 0; foreach($products as $p) : $i++; ?>
-
 							<div class="lx-g4 lx-g5-to-g2">
 								<div class="lx-products-item">
 									<a href="<?php echo base_url("home/show/$p->id"); ?>">
@@ -32,14 +28,12 @@
 												<?php }else{ ?>
 													<?php echo $p->price; ?> د.ج
 												<?php } ?>
-
 												</ins>
 											</p>
 										</div>
 									</a>
 								</div>
 							</div>
-
 							<?php if($i%4 == 0) echo "<div class='lx-clear-fix'></div>"; endforeach; ?>
 							<div class="lx-clear-fix"></div>
 						</div>
@@ -47,6 +41,4 @@
 					<div class="lx-clear-fix"></div>
 				</div>
 			</div>
-
-
 <?php include_once 'footer.php'; ?>

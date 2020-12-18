@@ -9,7 +9,6 @@
     <script type="text/javascript">
         var base_url = "<?php echo base_url(); ?>";
     </script>
-
     <meta name="description" content="<?php echo setting("descr"); ?>">
     <meta name="keywords" content="xmall,hmizat,avito,jumia,online shopping,">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,10 +16,10 @@
     <meta name="language" content="AR">
     <meta name="robots" content="index,follow"/>
     <meta name="Classification" content="Business">
-    <meta name="author" content="hobrt, hobrt.me">
+    <meta name="author" content="Berrehal Ouala eddine, berrehal.xyz">
     <meta name="designer" content="hobrt lhbib">
-    <meta name="reply-to" content="hobrtme@gmail.com">
-    <meta name="owner" content="hobrt.me">
+    <meta name="reply-to" content="berrehaloualaeddine@gmail.com">
+    <meta name="owner" content="info-tech.shop">
     <meta name="url" content="<?php echo base_url(); ?>">
     <meta name="identifier-URL" content="<?php echo base_url(); ?>">
     <meta name="og:title"
@@ -43,14 +42,10 @@
     <link rel="shortcut icon" href="favicon.ico">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-
-
     <?php echo setting("googlea"); ?>
     <?php echo setting("fbpixel"); ?>
-
 </head>
 <body>
-
 <!-- Load Facebook SDK for JavaScript -->
 <div id="fb-root"></div>
 <script>
@@ -76,8 +71,6 @@
      logged_in_greeting="السلام عليكم, هل يمكنني مساعدتك؟"
      logged_out_greeting="السلام عليكم, هل يمكنني مساعدتك؟">
 </div>
-
-
 <!-- Wrapper -->
 <div class="lx-wrapper" dir="rtl">
     <!-- Header -->
@@ -103,10 +96,8 @@
                 <div class="lx-header-cart">
                     <a href="<?php echo base_url("home/cart"); ?>">
                         <i class="fa fa-shopping-basket"></i>
-
                         <?php $cart = is_null(get_cookie("cart")) ? array() : json_decode(get_cookie("cart"), TRUE);
                         echo count($cart) == 0 ? "" : "<span>" . count($cart) . "</span>"; ?>
-
                     </a>
                 </div>
                 <div class="lx-clear-fix"></div>

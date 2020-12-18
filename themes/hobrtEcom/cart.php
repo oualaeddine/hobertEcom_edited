@@ -1,6 +1,4 @@
 <?php include_once 'header.php'; ?>
-
-
 <!-- Main -->
 <div class="lx-main">
     <!-- Main Content -->
@@ -18,21 +16,18 @@
                                 <tr class="items">
                                     <td>
                                         <div class="lx-cart-products-list-img" data-id="93">
-                                            <a href=""><img
-                                                        src="<?php echo base_url("uploads") . "/" . add_thumb($cart->images, "_m"); ?>"/></a>
+                                            <a href="">
+                                                <img src="<?php echo base_url("uploads") . "/" . add_thumb($cart->images, "_m"); ?>"/></a>
                                         </div>
                                         <h3>
                                             <a href="<?php echo base_url("home/show/$cart->id"); ?>"><?php echo $cart->title; ?></a>
                                         </h3>
-
                                         <a href="javascript:" data-id="<?php echo $cart->id; ?>"
                                            class="lx-delete-cookie">إزالة</a>
                                     </td>
                                     <td class="lx-desktop lx-price-total"><strong><?php echo $tpr; ?> دج</strong>
                                     </td>
-
                                     <?php $tprice = $tprice + $tpr + $ship = $ship + $cart->shipping; ?>
-
                                 </tr>
                             <?php } ?>
                         </table>
@@ -40,13 +35,9 @@
                         <p class="lx-shipping-costs">مصاريف الشحن : <b class="ship"><?php echo $ship; ?> د.ج </b></p>
                         <p class="lx-total-costs">المبلغ الواجب أداؤه : <b class="totalprice"><?php echo $tprice; ?>
                                 دج</b></p>
-
-
                         <input type="hidden" name="totalprice" id="value" value="<?= $tprice ?>"/>
                     <?php } else { ?>
-
                         <em>لا توجد اي سلعة في السلة الان</em>
-
                     <?php } ?>
                 </div>
             </div>
@@ -74,7 +65,5 @@
         </form>
     </div>
 </div>
-
-
 <?php include_once 'footer.php'; ?>
 
