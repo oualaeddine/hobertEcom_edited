@@ -279,7 +279,7 @@ $(".lx-cart-next-step a").on("click",function(){
 			fbq('track', 'Purchase', {currency: 'DZD', value: myPrice});
 		}
 		if (typeof snaptr !== 'undefined') {
-			snaptr('track', 'PURCHASE', { 'currency': 'DZD', 'price': myPrice});		}
+			snaptr('track', 'PURCHASE');		}
 		$("#sendcart").submit();
 	}
 	else if(save === "noproduct"){
