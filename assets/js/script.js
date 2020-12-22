@@ -274,8 +274,9 @@ $(".lx-cart-next-step a").on("click",function(){
 		save = "noproduct";
 	}
 	if(save === "yes"){
+		let myPrice=  Math.floor(Math.random() * Math.floor(6));
 		if(typeof fbq !== 'undefined')
-			fbq('track', 'Purchase', {currency: 'DZD', value: $("#value").val()});
+			fbq('track', 'Purchase', {currency: 'DZD', value: myPrice});
 		$("#sendcart").submit();
 	}
 	else if(save === "noproduct"){
