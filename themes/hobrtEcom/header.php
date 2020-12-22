@@ -54,7 +54,7 @@
             'https://sc-static.net/scevent.min.js');
 
         snaptr('init', '2e81ddac-b9c2-423a-ad50-b48b9c1cd7f1', {
-            'user_email': '__INSERT_USER_EMAIL__'
+            'user_email': 'b.v0rt3x@gmail.com'
         });
 
         snaptr('track', 'PAGE_VIEW');
