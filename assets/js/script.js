@@ -133,8 +133,8 @@ $(".lx-purchase-btns-floating a").on("click",function(){
 			q : q
 		},
 		success : function(response){
-		/*	if(typeof fbq !== 'undefined')
-				//fbq('track', 'AddToCart');*/
+		if(typeof fbq !== 'undefined')
+				fbq('track', 'AddToCart');
 			window.location.href = base_url + "cart";
 		}		
 	});		
@@ -154,8 +154,8 @@ $(".lx-add-to-cart").on("click",function(){
 			q : q
 		},
 		success : function(response){
-			/*if(typeof fbq !== 'undefined')
-			//	fbq('track', 'AddToCart');*/
+			if(typeof fbq !== 'undefined')
+				fbq('track', 'AddToCart');
 			window.location.href = base_url + "cart";
 		}		
 	});		
@@ -275,7 +275,7 @@ $(".lx-cart-next-step a").on("click",function(){
 	}
 	if(save === "yes"){
 		if(typeof fbq !== 'undefined')
-			fbq('track', 'Lead' );
+			fbq('track', 'Purchase', {currency: 'DZD', value: $("#value").val()});
 		$("#sendcart").submit();
 	}
 	else if(save === "noproduct"){
