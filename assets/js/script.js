@@ -4,7 +4,7 @@ var timer;
 // Window Load Event
 $(window).on("load", function() {
 
-    return false;
+	return false;
 });
 
 // Document Ready event
@@ -20,10 +20,10 @@ $(document).on("ready", function() {
 			price += parseFloat($(this).text());
 		})
 		price += parseFloat($(".lx-shipping-costs b").text());
-		$(".lx-total-costs strong").text(price.toFixed(0) + "د.ج");
-		$("input[name='totalprice']").val(price.toFixed(0));	
-	}	
-	
+		$(".lx-total-costs strong").text(price.toFixed(0) + "دج");
+		$("input[name='totalprice']").val(price.toFixed(0));
+	}
+
 	return false;
 });
 
@@ -48,16 +48,16 @@ $(".lx-product-qty .lx-plus").on("click",function(){
 		if($(".lx-colors").length){
 			cartcookie += ";Couleur:" + $(".lx-colors a.active").text();
 		}
-		$("#cartcookie").val(cartcookie);		
+		$("#cartcookie").val(cartcookie);
 	}
 	else{
-		$(this).parent().parent().parent().find(".lx-price-total strong").text(($(this).attr("data-price") * $(this).prev("input").val()).toFixed(0) +  "د.ج")
+		$(this).parent().parent().parent().find(".lx-price-total strong").text(($(this).attr("data-price") * $(this).prev("input").val()).toFixed(0) +  "دج");
 		var price = 0;
 		$(".lx-price-total strong").each(function(){
 			price += parseFloat($(this).text());
 		})
 		price += parseFloat($(".lx-shipping-costs b").text());
-		$(".lx-total-costs strong").text(price.toFixed(0) + "د.ج");
+		$(".lx-total-costs strong").text(price.toFixed(0) + "دج");
 		$("input[name='totalprice']").val(price.toFixed(0));
 	}
 });
@@ -77,13 +77,13 @@ $(".lx-product-qty .lx-minus").on("click",function(){
 		$("#cartcookie").val(cartcookie);
 	}
 	else{
-		$(this).parent().parent().parent().find(".lx-price-total strong").text(($(this).attr("data-price") * $(this).next("input").val()).toFixed(0) +  "د.ج");
+		$(this).parent().parent().parent().find(".lx-price-total strong").text(($(this).attr("data-price") * $(this).next("input").val()).toFixed(0) +  "دج");
 		var price = 0;
 		$(".lx-cart-products-list .lx-price-total strong").each(function(){
 			price += parseFloat($(this).text());
 		})
 		price += parseFloat($(".lx-shipping-costs b").text());
-		$(".lx-total-costs strong").text(price.toFixed(0) + "د.ج");
+		$(".lx-total-costs strong").text(price.toFixed(0) + "دج");
 		$("input[name='totalprice']").val(price.toFixed(0));
 	}
 });
@@ -133,11 +133,11 @@ $(".lx-purchase-btns-floating a").on("click",function(){
 			q : q
 		},
 		success : function(response){
-		if(typeof fbq !== 'undefined')
+			if(typeof fbq !== 'undefined')
 				fbq('track', 'AddToCart');
 			window.location.href = base_url + "cart";
-		}		
-	});		
+		}
+	});
 });
 
 $(".lx-add-to-cart").on("click",function(){
@@ -157,8 +157,8 @@ $(".lx-add-to-cart").on("click",function(){
 			if(typeof fbq !== 'undefined')
 				fbq('track', 'AddToCart');
 			window.location.href = base_url + "cart";
-		}		
-	});		
+		}
+	});
 });
 $(".lx-applycoupon").on("click",function(){
 
@@ -178,14 +178,14 @@ $(".lx-applycoupon").on("click",function(){
 				alert("ended");
 			}else {
 
-				var tp = parseInt($(".totalprice").text().replace("د.ج", ""));
+				var tp = parseInt($(".totalprice").text().replace("دج", ""));
 
-				var ship = parseInt($(".ship").text().replace("د.ج", ""));
+				var ship = parseInt($(".ship").text().replace("دج", ""));
 
 
 				var disc = (tp - ship) * parseInt(response) / 100;
 
-				$(".couponUse").html("الكوبون <b>- "+ disc +" د.ج</b>");
+				$(".couponUse").html("الكوبون <b>- "+ disc +" دج</b>");
 
 				$("#value").val(tp - disc);
 
@@ -193,11 +193,11 @@ $(".lx-applycoupon").on("click",function(){
 
 				var totalprice = tp - disc;
 
-				$(".lx-total-costs strong").html(totalprice + " د.ج");
+				$(".lx-total-costs strong").html(totalprice + " دج");
 
 			}
-		}		
-	});		
+		}
+	});
 });
 
 
@@ -210,10 +210,10 @@ $(document).scroll(function() {
 		}
 		else{
 			$(".lx-purchase-btns-floating").fadeOut();
-		}				
-	}	
-	
-    return false;
+		}
+	}
+
+	return false;
 });
 
 $(".lx-continue-shopping").on("click",function(){
@@ -236,7 +236,7 @@ $(".lx-delete-cookie").on("click",function(){
 				price += parseFloat($(this).text());
 			})
 			price += parseFloat($(".lx-shipping-costs b").text());
-			$(".lx-total-costs strong").text(price.toFixed(0) + "د.ج");
+			$(".lx-total-costs strong").text(price.toFixed(0) + "دج");
 			$("input[name='totalprice']").val(price.toFixed(0));
 			$(".lx-floating-response").remove();
 			window.clearTimeout(timer);
@@ -245,8 +245,8 @@ $(".lx-delete-cookie").on("click",function(){
 			timer = window.setTimeout(function(){
 				$(".lx-floating-response").fadeOut();
 			},5000);
-		}		
-	});	
+		}
+	});
 });
 
 $("body").delegate(".lx-floating-response","click",function(){
@@ -274,12 +274,8 @@ $(".lx-cart-next-step a").on("click",function(){
 		save = "noproduct";
 	}
 	if(save === "yes"){
-		let myPrice=  Math.floor(Math.random() * Math.floor(6));
-		if (typeof fbq !== 'undefined') {
-			fbq('track', 'Purchase', {currency: 'DZD', value: myPrice});
-		}
-		if (typeof snaptr !== 'undefined') {
-			snaptr('track', 'PURCHASE');		}
+		if(typeof fbq !== 'undefined')
+			fbq('track', 'Purchase', {currency: 'MAD', value: $("#value").val()});
 		$("#sendcart").submit();
 	}
 	else if(save === "noproduct"){
@@ -289,7 +285,7 @@ $(".lx-cart-next-step a").on("click",function(){
 		$(".lx-floating-response").fadeIn();
 		timer = window.setTimeout(function(){
 			$(".lx-floating-response").fadeOut();
-		},5000);		
+		},5000);
 	}
 	else{
 		$(".lx-floating-response").remove();
@@ -298,7 +294,7 @@ $(".lx-cart-next-step a").on("click",function(){
 		$(".lx-floating-response").fadeIn();
 		timer = window.setTimeout(function(){
 			$(".lx-floating-response").fadeOut();
-		},5000);		
+		},5000);
 	}
 });
 
@@ -312,20 +308,20 @@ $('.popup').on("click",function() {
 
 
 $(".lx-cart-info-address select[name='city']").on("change",function(){
-	if($(".lx-shipping-costs b").text() !== "0 د.ج"){
+	if($(".lx-shipping-costs b").text() !== "0دج"){
 		if($(this).val() === "Casablanca"){
-			$(".lx-shipping-costs b").text("0 د.ج");
+			$(".lx-shipping-costs b").text("25دج");
 		}
 		else{
-			$(".lx-shipping-costs b").text(" 0 د.ج");
-		}		
+			$(".lx-shipping-costs b").text("45دج");
+		}
 	}
 	var price = 0;
 	$(".lx-cart-products-list .lx-price-total strong").each(function(){
 		price += parseFloat($(this).text());
 	})
 	price += parseFloat($(".lx-shipping-costs b").text());
-	$(".lx-total-costs strong").text(price.toFixed(0) + "د.ج");
+	$(".lx-total-costs strong").text(price.toFixed(0) + "دج");
 	$("input[name='totalprice']").val(price.toFixed(0));
 });
 
