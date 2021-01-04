@@ -35,12 +35,25 @@
                     <h1> <?php echo $p->title; ?></h1>
                     <?php if ($p->discount > 0) { ?> <p class="lx-product-disaccount">
                         <span>تخفيض:</span> <?php echo $p->discount; ?>% </p> <?php } ?>
-                    <?php if ($p->discount > 0) { ?>
+                    <?php
+                    $formatter = new NumberFormatter('en_US', NumberFormatter::CURRENCY);
+                    if ($p->discount > 0) { ?>
                         <p class="lx-product-price"><span>
-                                        <?php echo $p->price; ?> د.ج </span> <?php echo floor($p->price - ($p->price * $p->discount / 100)); ?>
+                                        <?php
+                                        $actual = $formatter->formatCurrency($p->price, 'USD') . PHP_EOL;
+                                        $output = preg_replace('/[^0-9,"."]/', '', $actual);
+
+                                        echo $output; ?> د.ج </span> <?php
+                            $actual = $formatter->formatCurrency(floor($p->price - ($p->price * $p->discount / 100)), 'USD') . PHP_EOL;
+                            $output = preg_replace('/[^0-9,"."]/', '', $actual);
+                            echo $output; ?>
                             د.ج</p>
-                    <?php } else { ?>
-                        <p class="lx-product-price"><?php echo $p->price; ?> د.ج </p>
+                    <?php } else {
+                        $actual = $formatter->formatCurrency($p->price, 'USD') . PHP_EOL;
+                        $output = preg_replace('/[^0-9,"."]/', '', $actual);
+                        ?>
+
+                        <p class="lx-product-price"><?php echo $output; ?> د.ج </p>
                     <?php } ?>
                     <div class="lx-product-qty">
                         <ins>الكمية:</ins>
