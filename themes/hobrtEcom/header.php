@@ -42,28 +42,12 @@
     <link rel="shortcut icon" href="favicon.ico">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+
     <?php echo setting("googlea"); ?>
     <?php echo setting("fbpixel"); ?>
-    <!-- Snap Pixel Code -->
-    <script type='text/javascript'>
-        (function(e,t,n){if(e.snaptr)return;var a=e.snaptr=function()
-        {a.handleRequest?a.handleRequest.apply(a,arguments):a.queue.push(arguments)};
-            a.queue=[];var s='script';r=t.createElement(s);r.async=!0;
-            r.src=n;var u=t.getElementsByTagName(s)[0];
-            u.parentNode.insertBefore(r,u);})(window,document,
-            'https://sc-static.net/scevent.min.js');
 
-        snaptr('init', '2e81ddac-b9c2-423a-ad50-b48b9c1cd7f1', {
-            'user_email': 'b.v0rt3x@gmail.com'
-        });
-
-        snaptr('track', 'PAGE_VIEW');
-
-    </script>
-    <!-- End Snap Pixel Code -->
 </head>
-<body>
-<!-- Load Facebook SDK for JavaScript -->
+<body><!-- Load Facebook SDK for JavaScript -->
 <div id="fb-root"></div>
 <script>
     window.fbAsyncInit = function() {
@@ -77,7 +61,7 @@
         var js, fjs = d.getElementsByTagName(s)[0];
         if (d.getElementById(id)) return;
         js = d.createElement(s); js.id = id;
-        js.src = 'https://connect.facebook.net/ar_AR/sdk/xfbml.customerchat.js';
+        js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));</script>
 
@@ -85,9 +69,9 @@
 <div class="fb-customerchat"
      attribution=setup_tool
      page_id="118028346695107"
-     logged_in_greeting="السلام عليكم, هل يمكنني مساعدتك؟"
-     logged_out_greeting="السلام عليكم, هل يمكنني مساعدتك؟">
+     theme_color="#0A7CFF">
 </div>
+
 <!-- Wrapper -->
 <div class="lx-wrapper" dir="rtl">
     <!-- Header -->
