@@ -1,8 +1,9 @@
+<p>This site is not part of the Facebook website or Facebook Inc. Additionally, this site is NOT
+    endorsed by Facebook in any way. FACEBOOK is a trademark of FACEBOOK, Inc.</p>
 <!-- Footer -->
 <div class="lx-footer">
     <!-- Footer Bottom -->
-    <p>This site is not part of the Facebook website or Facebook Inc. Additionally, this site is NOT
-        endorsed by Facebook in any way. FACEBOOK is a trademark of FACEBOOK, Inc.</p>
+
     <div class="lx-footer-bottom">
         <div class="lx-footer-bottom-content">
             <div class="lx-copyright">
