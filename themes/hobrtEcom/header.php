@@ -19,7 +19,7 @@
     <meta name="author" content="Berrehal Ouala eddine, berrehal.xyz">
     <meta name="designer" content="hobrt lhbib">
     <meta name="reply-to" content="berrehaloualaeddine@gmail.com">
-    <meta name="owner" content="info-tech.shop">
+    <meta name="owner" content="berrehal.com">
     <meta name="url" content="<?php echo base_url(); ?>">
     <meta name="identifier-URL" content="<?php echo base_url(); ?>">
     <meta name="og:title"
