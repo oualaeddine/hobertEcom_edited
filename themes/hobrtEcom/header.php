@@ -22,6 +22,7 @@
     <meta name="owner" content="berrehal.com">
     <meta name="url" content="<?php echo base_url(); ?>">
     <meta name="identifier-URL" content="<?php echo base_url(); ?>">
+    <meta name="facebook-domain-verification" content="z4hjq7xbtyws2vddq3x0krrkcgmch5" />
     <meta name="og:title"
           content="<?php echo setting("title"); ?> - <?php echo isset($title) ? $title : "بيع جميع أنواع السلع"; ?>"/>
     <meta name="og:type" content="e-commerce"/>
