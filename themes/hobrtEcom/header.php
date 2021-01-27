@@ -94,6 +94,8 @@
                             <li><a href="category/<?php echo $cat->id; ?>" class=""><?php echo $cat->title; ?></a></li>
                         <?php endforeach; ?>
                         <li><a href="special/تخفيضات" class="">تخفيضات</a></li>
+                        <li><a href="privacy-policy.html" class="">Privacy policy</a></li>
+                        <li><a href="terms-of-service.html" class="">Terms of service</a></li>
                     </ul>
                     <div class="lx-clear-fix"></div>
                 </div>
