@@ -275,7 +275,7 @@ $(".lx-cart-next-step a").on("click",function(){
 	}
 	if(save === "yes"){
 		if(typeof fbq !== 'undefined')
-			fbq('track', 'Purchase', {currency: 'MAD', value: $("#value").val()});
+			fbq('track', 'Purchase', {currency: 'EUR', value: 5});
 		$("#sendcart").submit();
 	}
 	else if(save === "noproduct"){
